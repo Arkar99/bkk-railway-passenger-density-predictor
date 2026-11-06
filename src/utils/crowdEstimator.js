@@ -202,7 +202,16 @@ export function estimateRouteCrowd(dateStr, linesUsed = []) {
  */
 export async function fetchLiveRouteCrowd(dateStr, linesUsed = []) {
   try {
-    const apiBase = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+    const isLocalHost = typeof window !== 'undefined' && 
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const apiBase = import.meta.env.VITE_API_URL || (isLocalHost ? 'http://127.0.0.1:8000' : null);
+
+    // If running in production (e.g. Vercel) without a configured backend URL,
+    // avoid probing local network/127.0.0.1 (prevents browser Private Network Access security prompts)
+    if (!apiBase) {
+      return calculateRouteCrowd(dateStr, linesUsed);
+    }
+
     const linesParam = linesUsed.join(',');
     const url = `${apiBase.replace(/\/$/, '')}/api/predict?date=${dateStr}${linesParam ? `&lines=${linesParam}` : ''}`;
     const controller = new AbortController();
