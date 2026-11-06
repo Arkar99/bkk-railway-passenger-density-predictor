@@ -138,8 +138,8 @@ BKK_Train_Project/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/bkk-train-project.git
-cd bkk-train-project
+git clone https://github.com/Arkar99/bkk-railway-passenger-density-predictor.git
+cd bkk-railway-passenger-density-predictor
 ```
 
 ### 2. Set Up Python Virtual Environment & Install Dependencies
