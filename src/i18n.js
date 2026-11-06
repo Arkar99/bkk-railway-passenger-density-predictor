@@ -151,7 +151,7 @@ export const LINE_DATA = {
     th: "รถไฟฟ้าแอร์พอร์ต เรล ลิงก์",
     color: "#dc2626",
     badgeColor: "#b91c1c",
-    icon: "🔴"
+    icon: "✈️"
   },
   "SRT_Red_Dark": {
     en: "SRT Dark Red Line",
@@ -395,6 +395,10 @@ export function getLineName(lineId, lang = 'en') {
 
 export function getLineColor(lineId) {
   return LINE_DATA[lineId]?.color || "#38bdf8";
+}
+
+export function getLineIcon(lineId) {
+  return LINE_DATA[lineId]?.icon || "";
 }
 
 export function t(key, lang = 'en', params = {}) {

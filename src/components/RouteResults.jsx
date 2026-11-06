@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   getLineColor,
+  getLineIcon,
   getLineName,
   getStationName,
   getStationNameOnly,
@@ -179,7 +180,7 @@ export function RouteResults({
                 className="line-pill"
                 style={{ backgroundColor: getLineColor(lineId) }}
               >
-                {getLineName(lineId, lang)}
+                {getLineIcon(lineId) ? `${getLineIcon(lineId)} ` : ''}{getLineName(lineId, lang)}
               </span>
             ))}
           </div>
@@ -293,7 +294,7 @@ export function RouteResults({
                   <div className="segment-header">
                     <div className="segment-header-main">
                       <span className="segment-header-badge" style={{ backgroundColor: lineColor }}>
-                        {lineName}
+                        {getLineIcon(segment.line) ? `${getLineIcon(segment.line)} ` : ''}{lineName}
                       </span>
                       <span
                         className="segment-header-text"
