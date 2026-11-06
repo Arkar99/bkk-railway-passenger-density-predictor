@@ -1,0 +1,127 @@
+{
+  "training_date": "2026-11-02",
+  "data_range": {
+    "start": "2022-10-01",
+    "end": "2026-09-30",
+    "total_days": 1461
+  },
+  "lines": {
+    "ARL": {
+      "p95_capacity": 78410,
+      "max_capacity": 101641,
+      "mean_ridership": 64475,
+      "weekday_mean": 69489,
+      "weekend_mean": 51965,
+      "evaluation": {
+        "mae": 3751.1,
+        "rmse": 6122.6,
+        "mape": 6.59,
+        "r2": 0.7027
+      }
+    },
+    "BTS_Gold": {
+      "p95_capacity": 10913,
+      "max_capacity": 46691,
+      "mean_ridership": 7162,
+      "weekday_mean": 6891,
+      "weekend_mean": 7841,
+      "evaluation": {
+        "mae": 1037.2,
+        "rmse": 1671.1,
+        "mape": 13.24,
+        "r2": 0.6783
+      }
+    },
+    "BTS_Green": {
+      "p95_capacity": 873057,
+      "max_capacity": 1188459,
+      "mean_ridership": 708316,
+      "weekday_mean": 770892,
+      "weekend_mean": 552178,
+      "evaluation": {
+        "mae": 38139.5,
+        "rmse": 56104.2,
+        "mape": 6.41,
+        "r2": 0.8224
+      }
+    },
+    "MRT_Blue": {
+      "p95_capacity": 522970,
+      "max_capacity": 712781,
+      "mean_ridership": 405105,
+      "weekday_mean": 450239,
+      "weekend_mean": 292486,
+      "evaluation": {
+        "mae": 22242.4,
+        "rmse": 36924.5,
+        "mape": 5.79,
+        "r2": 0.8544
+      }
+    },
+    "MRT_Pink": {
+      "p95_capacity": 84107,
+      "max_capacity": 131854,
+      "mean_ridership": 60655,
+      "weekday_mean": 66670,
+      "weekend_mean": 45475,
+      "evaluation": {
+        "mae": 8660.9,
+        "rmse": 10959.9,
+        "mape": 13.72,
+        "r2": 0.5316
+      }
+    },
+    "MRT_Purple": {
+      "p95_capacity": 85964,
+      "max_capacity": 110632,
+      "mean_ridership": 60470,
+      "weekday_mean": 69231,
+      "weekend_mean": 38609,
+      "evaluation": {
+        "mae": 3983.0,
+        "rmse": 6969.2,
+        "mape": 7.86,
+        "r2": 0.8482
+      }
+    },
+    "MRT_Yellow": {
+      "p95_capacity": 55657,
+      "max_capacity": 96432,
+      "mean_ridership": 42208,
+      "weekday_mean": 45431,
+      "weekend_mean": 34154,
+      "evaluation": {
+        "mae": 4241.8,
+        "rmse": 6697.5,
+        "mape": 9.5,
+        "r2": 0.5588
+      }
+    },
+    "SRT": {
+      "p95_capacity": 89334,
+      "max_capacity": 109567,
+      "mean_ridership": 72585,
+      "weekday_mean": 71643,
+      "weekend_mean": 74935,
+      "evaluation": {
+        "mae": 4246.8,
+        "rmse": 5964.8,
+        "mape": 5.29,
+        "r2": 0.589
+      }
+    },
+    "SRT_Red": {
+      "p95_capacity": 43076,
+      "max_capacity": 61216,
+      "mean_ridership": 29851,
+      "weekday_mean": 32678,
+      "weekend_mean": 22796,
+      "evaluation": {
+        "mae": 3996.0,
+        "rmse": 4940.6,
+        "mape": 12.58,
+        "r2": 0.5187
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+name: Monthly Transit Data Sync & Retrain
+
+on:
+  schedule:
+    # Runs at 03:00 UTC on the 5th day of every month
+    - cron: '0 3 5 * *'
+  workflow_dispatch: # Allows manual trigger button in GitHub UI
+
+jobs:
+  sync-and-retrain:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Fetch Latest Monthly Data & Retrain Models
+        env:
+          DATA_GO_TH_API_KEY: ${{ secrets.DATA_GO_TH_API_KEY }}
+        run: |
+          python ml/src/sync_data.py --retrain
+
+      - name: Commit & Push New Data & Model Artifacts
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/daily_passenger.csv ml/models/
+          if git diff --staged --quiet; then
+            echo "No new monthly data detected. Repository is already up to date."
+          else
+            git commit -m "chore(data): auto-sync monthly dataset & retrain models [skip ci]"
+            git push
+          fi
+

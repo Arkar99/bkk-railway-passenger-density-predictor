@@ -1,0 +1,33 @@
+{
+  "name": "bkk-train-project",
+  "version": "1.0.0",
+  "description": "Bangkok Rail Route Planner & Crowd Predictor",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite",
+    "api": "venv\\Scripts\\python.exe -m uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload",
+    "sync": "venv\\Scripts\\python.exe ml/src/sync_data.py --retrain"
+  },
+  "keywords": [
+    "bangkok",
+    "bts",
+    "mrt",
+    "arl",
+    "railway",
+    "router"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lucide-react": "^1.66.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.2.0",
+    "vite": "^8.3.5"
+  }
+}
