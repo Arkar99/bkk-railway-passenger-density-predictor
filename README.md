@@ -17,10 +17,9 @@ A high-performance, full-stack transit navigation and machine learning applicati
 
 - **Multi-Agency Network Routing**: Seamless pathfinding across BTS, MRT, ARL, and SRT lines using an intelligent graph search algorithm based on Yen's K-Shortest Path with physical interchange hub grouping, transfer penalties, and specialized circular-loop handling for the MRT Blue Line.
 - **Machine Learning Crowd Density Forecasting**: Real-time daily ridership predictions and crowd density scoring (0–100%, Low/Moderate/Busy/Crowded) powered by `HistGradientBoostingRegressor` models trained on official Thailand Department of Rail Transport data.
-- **Smart Collapsible Metro Corridor UI**: Google Maps / Citymapper-style collapsible intermediate stations (`▾ Ride N stops (~M min)`), saving over 75% of vertical screen space while keeping essential interchanges visible.
 - **Full Bilingual Localization**: Complete dynamic English and Thai (`EN` / `TH`) language toggles for all stations, transit lines, route instructions, and crowd indicators.
 - **FastAPI Asynchronous Microservice**: Lightweight, high-throughput Python backend serving real-time predictions, health checks, model metadata, and route bottleneck calculations.
-- **Automated MLOps Monthly Ingestion Pipeline**: Ingestion script (`sync_data.py`) syncing monthly published datasets from the Thailand Open Government Data API (`opend.data.go.th`) paired with GitHub Actions for automated retraining.
+- **Automated MLOps Monthly Ingestion Pipeline**: Ingestion script (`sync_data.py`) syncing monthly published datasets from the Thailand Open Government Data API (`opend.data.go.th`) paired with GitHub Actions for automated retraining. (WIP)
 - **Modern Minimalist Design**: Glassmorphic aesthetic with official Bangkok rail line color coding, clear transfer badges, and accessibility-first enlarged typography.
 
 ---
@@ -41,43 +40,6 @@ The system models **10 mass transit lines** spanning over 170+ stations and 30+ 
 | `ARL` | Airport Rail Link | แอร์พอร์ต เรล ลิงก์ | SRTET | `#dc2626` |
 | `SRT_Red_Dark` | SRT Dark Red Line | สายสีแดงเข้ม (กรุงเทพอภิวัฒน์ - รังสิต) | SRTET | `#991b1b` |
 | `SRT_Red_Light` | SRT Light Red Line | สายสีแดงอ่อน (กรุงเทพอภิวัฒน์ - ตลิ่งชัน) | SRTET | `#e11d48` |
-
----
-
-## 🏗️ System Architecture
-
-```mermaid
-flowchart TD
-    subgraph Client ["Client Layer (Port 3000)"]
-        UI["React 19 + Vite Frontend"]
-        Router["Graph Router (router.js)<br/>Yen's K-Shortest Path"]
-        Corridor["Smart Metro Corridor UI<br/>Collapsible Station Segments"]
-        Estimator["Client Crowd Estimator<br/>(crowdEstimator.js)"]
-    end
-
-    subgraph Server ["Backend Layer (Port 8000)"]
-        API["FastAPI Microservice (api/main.py)"]
-        Endpoints["/api/predict<br/>/api/health<br/>/api/metadata"]
-    end
-
-    subgraph ML ["Machine Learning & MLOps Layer"]
-        Models["passenger_models.joblib<br/>(HistGradientBoostingRegressor)"]
-        Inference["Inference Engine (predict.py)"]
-        Sync["CKAN API Sync (sync_data.py)"]
-        Retrain["Retraining Pipeline (train.py)"]
-        OpenData["Thailand Open Data Portal<br/>(opend.data.go.th)"]
-    end
-
-    UI --> Router
-    UI --> Corridor
-    UI <-->|HTTP / JSON| API
-    UI -.->|Fallback if offline| Estimator
-    API --> Inference
-    Inference --> Models
-    OpenData -->|Monthly Ingest| Sync
-    Sync --> Retrain
-    Retrain --> Models
-```
 
 ---
 
@@ -295,7 +257,8 @@ A scheduled GitHub Actions workflow ([`.github/workflows/monthly_update.yml`](.g
 
 - **Data Provider**: Department of Rail Transport (กรมการขนส่งทางราง - ขร.), Ministry of Transport, Thailand.
 - **Portal**: [Open Government Data of Thailand (data.go.th)](https://opend.data.go.th/)
-- **Resource ID**: `8a8d53fc-0c9c-4301-a354-8529bf487ceb` (สถิติจำนวนผู้โดยสารที่ใช้บริการระบบขนส่งทางราง)
+- **Resource Link**: https://data.go.th/en/dataset/stat_pass_rail
+
 
 ---
 
